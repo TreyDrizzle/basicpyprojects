@@ -2,6 +2,8 @@ import argparse, os, time
 import urllib.parse, random
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+
 from bs4 import BeautifulSoup
 
 def getPeopleLinks(page):
@@ -23,26 +25,21 @@ def getJobLinks(page):
     return links
 
 def Main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("email", help="Linkedin email")
-    parser.add_argument("password", help="linkedin password")
-    args = parser.parse_args()
+    
+    driver = webdriver.Chrome()
+    driver.get("https://www.linkedin.com/login")
+    driver.implicitly_wait(3)
 
-    browser = webdriver.Chrome()
-    browser.get("https://www.linkedin.com/login")
+    username = driver.find_element(By.NAME, 'session_key')
+    password = driver.find_element(By.NAME, 'session_password')
+    login = driver.find_element(By.XPATH, '//button[1]')
 
-    emailElement = browser.find_element_by_id("username")
-    emailElement.send_keys(args.email)
-    passElement = browser.find_element_by_id("password")
-    passElement.send_keys(args.password)
-    passElement.submit()
-
-    os.system('cls')
-    print ;"[+] Success! Linked in Bot has logged in"
-    ViewBot(browser)
-    browser.close()
+    username.send_keys('tcdavissies@gmail.com')
+    password.send_keys('linkbot')
+    login.click()
 
 if __name__ == '__main__':
         Main()
+   
 
 
