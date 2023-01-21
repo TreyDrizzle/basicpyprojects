@@ -24,6 +24,30 @@ def getJobLinks(page):
                     links.append(url)
     return links
 
+
+def ViewBot(driver):
+    visited = {}
+    pList = []
+    count = 0
+    while True:
+            #sleep to make sure everthing loads.
+            #add random to make us look human. 
+            time.sleep(random.uniform(3.5,6.9))
+            link = driver.find_element(By.LINK_TEXT, "My Network")
+            link.click()            
+            time.sleep(1)
+            link = driver.find_element(By.LINK_TEXT, "Connections")
+            link.click()
+            page = BeautifulSoup(driver.page_source)
+            people = getPeopleLinks(page)
+            for person in people:
+                pList.append(person)
+            if pList:
+                person = pList.pop()
+                driver.get(person)
+
+
+            
 def Main():
     
     driver = webdriver.Chrome()
@@ -38,6 +62,11 @@ def Main():
     password.send_keys('linkbot')
     login.click()
 
+    os.system('cls')
+    ViewBot(driver)
+    
+
+   
 if __name__ == '__main__':
         Main()
    
