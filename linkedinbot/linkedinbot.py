@@ -32,19 +32,15 @@ def ViewBot(driver):
     while True:
             #sleep to make sure everthing loads.
             #add random to make us look human. 
-            time.sleep(random.uniform(3.5,6.9))
-            link = driver.find_element(By.LINK_TEXT, "My Network")
-            link.click()            
             time.sleep(1)
-            link = driver.find_element(By.LINK_TEXT, "Connections")
-            link.click()
-            page = BeautifulSoup(driver.page_source)
-            people = getPeopleLinks(page)
-            for person in people:
-                pList.append(person)
-            if pList:
-                person = pList.pop()
-                driver.get(person)
+            driver.get("https://www.linkedin.com/search/results/people/?origin=SWITCH_SEARCH_VERTICAL&sid=Zu)")
+            time.sleep(1)
+            
+            all_buttons = driver.find_element(By.TAG_NAME, 'button')
+            connect_buttons = [btn for btn in all_buttons if btn.text == "Connect"]
+
+            for btn in connect_buttons:
+                driver.execute_script("arguments[0].click();", btn)
 
 
             
