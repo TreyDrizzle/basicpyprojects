@@ -71,7 +71,7 @@ def Main():
     login = driver.find_element(By.XPATH, '//button[1]')
 
     username.send_keys('tcdavissies@gmail.com')
-    password.send_keys('linkbot')
+    password.send_keys('PASSWORD')
     login.click()
 
 <<<<<<< HEAD
