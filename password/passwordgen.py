@@ -20,7 +20,7 @@ if syms:
     all += symbols
 
 length = 20
-amount = 10 
+amount = 1 
 
 for x in range(amount):
     password = "".join(random.sample(all, length))
