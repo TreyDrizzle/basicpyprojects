@@ -21,6 +21,7 @@ def find_division(url):
     url_open =requests.get(url)
     soup = BeautifulSoup(url_open._content, 'html.parser')
     for link in soup.find_all('tr'):
+        
         print(link.text)
 
 find_division(url)
