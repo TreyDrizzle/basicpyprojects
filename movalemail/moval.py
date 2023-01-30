@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-Enter_input = input("Seach: ")
+
 
 url = "https://www.moval.edu/faculty-staff/"
 
